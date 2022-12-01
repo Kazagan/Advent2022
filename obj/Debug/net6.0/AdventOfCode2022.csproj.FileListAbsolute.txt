@@ -1,0 +1,16 @@
+/Users/steffen/workspace/personal/AdventOfCode2022/bin/Debug/net6.0/TextFiles/Day01/Example.txt
+/Users/steffen/workspace/personal/AdventOfCode2022/bin/Debug/net6.0/AdventOfCode2022
+/Users/steffen/workspace/personal/AdventOfCode2022/bin/Debug/net6.0/AdventOfCode2022.deps.json
+/Users/steffen/workspace/personal/AdventOfCode2022/bin/Debug/net6.0/AdventOfCode2022.runtimeconfig.json
+/Users/steffen/workspace/personal/AdventOfCode2022/bin/Debug/net6.0/AdventOfCode2022.dll
+/Users/steffen/workspace/personal/AdventOfCode2022/bin/Debug/net6.0/AdventOfCode2022.pdb
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/AdventOfCode2022.csproj.AssemblyReference.cache
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/AdventOfCode2022.GeneratedMSBuildEditorConfig.editorconfig
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/AdventOfCode2022.AssemblyInfoInputs.cache
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/AdventOfCode2022.AssemblyInfo.cs
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/AdventOfCode2022.csproj.CoreCompileInputs.cache
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/AdventOfCode2022.dll
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/refint/AdventOfCode2022.dll
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/AdventOfCode2022.pdb
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/AdventOfCode2022.genruntimeconfig.cache
+/Users/steffen/workspace/personal/AdventOfCode2022/obj/Debug/net6.0/ref/AdventOfCode2022.dll
