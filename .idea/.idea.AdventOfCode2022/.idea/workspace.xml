@@ -4,7 +4,9 @@
     <projectFile>AdventOfCode2022.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e443673-96cf-44d3-9eb0-5c86fa92b560" name="Changes" comment="" />
+    <list default="true" id="0e443673-96cf-44d3-9eb0-5c86fa92b560" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Days/Day01.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Days/Day01.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,13 +79,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669934263535</updated>
-      <workItem from="1669934269237" duration="2158000" />
+      <workItem from="1669934269237" duration="4520000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

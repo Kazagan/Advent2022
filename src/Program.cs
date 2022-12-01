@@ -6,8 +6,9 @@ public static class Program
 {
     public static void Main()
     {
-        var file = "./TextFiles/Day01/Example.txt";
+        var file = "./TextFiles/Day01/Input.txt";
         Day01.ReadLines(file);
+        Console.WriteLine();
         Day01.Stream(file);
     }
 }
