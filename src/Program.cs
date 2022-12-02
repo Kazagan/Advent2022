@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2022.Days;
+using BenchmarkDotNet.Running;
 
 namespace AdventOfCode2022;
 
@@ -6,9 +7,6 @@ public static class Program
 {
     public static void Main()
     {
-        var file = "./TextFiles/Day01/Input.txt";
-        Day01.ReadLines(file);
-        Console.WriteLine();
-        Day01.Stream(file);
+        BenchmarkRunner.Run<Day01>();
     }
 }

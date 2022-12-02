@@ -1,0 +1,7 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 3 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /home/staige/RiderProjects/Advent2022/src/bin/Release/net6.0/def7bf78-238b-4d8f-9638-657a24ce3b12
+// command took 2.02s and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /home/staige/RiderProjects/Advent2022/src/bin/Release/net6.0/def7bf78-238b-4d8f-9638-657a24ce3b12

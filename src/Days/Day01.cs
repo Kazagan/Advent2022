@@ -1,16 +1,30 @@
-using System;
-using System.IO;
-using System.Runtime.InteropServices;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
 
 namespace AdventOfCode2022.Days;
 
-public static class Day01
+[MemoryDiagnoser()]
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
+[RankColumn()]
+public class Day01
 {
-    public static void ReadLines(string file)
+    private const string File = "./TextFiles/Day01/Input.txt";
+
+    [Benchmark]
+    public int LinqSolution()
     {
-        var highThree = new int[] { 0, 0, 0 };
+        return System.IO.File.ReadAllText(File).Split("\n\n")
+            .Select(x => x.Split("\n").Sum(int.Parse))
+            .OrderByDescending(x => x)
+            .Take(3)
+            .Sum();
+    }
+    [Benchmark]
+    public  int ReadLines()
+    {
+        var highThree = new[] { 0, 0, 0 };
         var current = 0;
-        var lines = File.ReadAllLines(file);
+        var lines = System.IO.File.ReadAllLines(File);
         for (int i = 0; i < lines.Length; i++)
         {
             if (!string.IsNullOrEmpty(lines[i]))
@@ -23,13 +37,13 @@ public static class Day01
             current = 0;
         }
 
-        Console.WriteLine(highThree.Sum());
+        return highThree.Sum();
     }
-
-    public static void Stream(string file)
+    [Benchmark]
+    public int Stream()
     {
-        using var stream = new StreamReader(file);
-        var highThree = new int[] { 0, 0, 0 };
+        using var stream = new StreamReader(File);
+        var highThree = new[] { 0, 0, 0 };
         int current = 0;
         while (true)
         {
@@ -49,7 +63,7 @@ public static class Day01
             current = 0;
         }
 
-        Console.WriteLine(highThree.Sum());
+        return highThree.Sum();
     }
 
     private static void CheckHighest(IList<int> highThree, int current)
