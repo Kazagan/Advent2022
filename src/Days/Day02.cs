@@ -38,8 +38,9 @@ public class Day02
     public int LinqGame()
     {
         return File.ReadLines(MyFile)
-            .Sum(x => (int)GetMyPlay(GetElvesPlay(x[0]), x[2]) + 1 +
-                      Rules[(int)GetElvesPlay(x[0]), (int)GetMyPlay(GetElvesPlay(x[0]), x[2])]);
+            .Sum(x => (int)GetMyPlay(GetElvesPlay(x[0]), x[2]) 
+                      + 1 // Account for value of throw
+                      + Rules[(int)GetElvesPlay(x[0]), (int)GetMyPlay(GetElvesPlay(x[0]), x[2])]);
     }
 
     private static Play GetElvesPlay(char play)
