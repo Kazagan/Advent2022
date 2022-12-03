@@ -4,6 +4,7 @@ namespace AdventOfCode2022.Days;
 
 public static class Day02
 {
+    private const string File = "./src/TextFiles/Day02/Input.txt";
     private static readonly int[,] Rules =
     {
         //r  p  s   
@@ -12,15 +13,7 @@ public static class Day02
         { 6, 0, 3 } // s
     };
 
-    private const string File = "./src/TextFiles/Day02/Input.txt";
-
-    // a/x - rock |  b/y - paper |  c/z -scissors
-    private enum Play
-    {
-        Rock = 0,
-        Paper = 1,
-        Scissors = 2
-    }
+    private enum Play { Rock = 0, Paper = 1, Scissors = 2 }
 
     public static int Game()
     {
