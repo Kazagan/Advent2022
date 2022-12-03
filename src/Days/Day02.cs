@@ -18,7 +18,7 @@ public class Day02
         { 6, 0, 3 } // s
     };
 
-    private enum Play { Rock = 0, Paper = 1, Scissors = 2 }
+    private enum Play { Rock, Paper, Scissors }
 
     [Benchmark]
     public int Game()
