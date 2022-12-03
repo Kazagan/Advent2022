@@ -9,12 +9,12 @@ namespace AdventOfCode2022.Days;
 [RankColumn()]
 public class Day01
 {
-    private const string File = "./TextFiles/Day01/Input.txt";
+    private const string MyFile = "./TextFiles/Day01/Input.txt";
 
     [Benchmark]
     public int LinqSolution()
     {
-        return System.IO.File.ReadAllText(File).Split("\n\n")
+        return File.ReadAllText(MyFile).Split("\n\n")
             .Select(x => x.Split("\n").Sum(int.Parse))
             .OrderByDescending(x => x)
             .Take(3)
@@ -26,7 +26,7 @@ public class Day01
     {
         var highThree = new[] { 0, 0, 0 };
         var current = 0;
-        var lines = System.IO.File.ReadAllLines(File);
+        var lines = System.IO.File.ReadAllLines(MyFile);
         for (int i = 0; i < lines.Length; i++)
         {
             if (!string.IsNullOrEmpty(lines[i]))
@@ -45,7 +45,7 @@ public class Day01
     [Benchmark]
     public int Stream()
     {
-        using var stream = new StreamReader(File);
+        using var stream = new StreamReader(MyFile);
         var highThree = new[] { 0, 0, 0 };
         int current = 0;
         while (true)
@@ -81,7 +81,7 @@ public class Day01
     //The following isn't mine, and was found online, want to bench mark it.
     public int OnlineAnswer()
     {
-        return System.IO.File.ReadLines(File)
+        return File.ReadLines(MyFile)
             .ChunkBy(string.IsNullOrWhiteSpace)
             .Select(x => x.Sum(int.Parse))
             .OrderByDescending(x => x)

@@ -8,5 +8,6 @@ public static class Program
     public static void Main()
     {
         Console.WriteLine(Day02.Game());
+        Console.WriteLine(Day02.LinqGame());
     }
 }
