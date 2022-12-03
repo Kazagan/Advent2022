@@ -1,10 +1,16 @@
 using System.IO;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
 
 namespace AdventOfCode2022.Days;
 
-public static class Day02
+[MemoryDiagnoser]
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
+[RankColumn]
+public class Day02
 {
-    private const string MyFile = "./src/TextFiles/Day02/Input.txt";
+    // private const string MyFile = "./src/TextFiles/Day02/Input.txt";
+    private const string MyFile = "./TextFiles/Day02/Input.txt";
     private static readonly int[,] Rules =
     {
         //r  p  s   
@@ -15,40 +21,35 @@ public static class Day02
 
     private enum Play { Rock = 0, Paper = 1, Scissors = 2 }
 
-    public static int Game()
+    [Benchmark]
+    public int Game()
     {
         using var reader = new StreamReader(MyFile);
         var currentScore = 0;
         while (reader.ReadLine() is { } line)
         {
-            var plays = line.Split(" ").Select(GetElvesPlay).ToArray();
-            currentScore += GetRoundScore(plays);
+            var opponent = GetElvesPlay(line[0]);
+            var mine = GetElvesPlay(line[2]);
+            currentScore += (int)mine + 1 + Rules[(int)opponent, (int)mine];
         }
         return currentScore;
     }
-
-    private static int GetRoundScore(IReadOnlyList<Play> game)
+    
+    [Benchmark]
+    public int LinqGame()
     {
-        return (int)game[1] + 1 + Rules[(int)game[0], (int)game[1]];
+        return File.ReadLines(MyFile)
+            .Sum(x => (int)GetElvesPlay(x[2]) + 1 + Rules[(int)GetElvesPlay(x[0]), (int)GetElvesPlay(x[2])]);
     }
 
-    private static Play GetElvesPlay(string play)
+    private static Play GetElvesPlay(char play)
     {
         return play switch
         {
-            "A" or "X" => Play.Rock,
-            "B" or "Y" => Play.Paper,
-            "C" or "Z" => Play.Scissors,
+            'A' or 'X' => Play.Rock,
+            'B' or 'Y' => Play.Paper,
+            'C' or 'Z' => Play.Scissors,
             _ => throw new Exception("Invalid Play")
         };
-    }
-
-    public static int LinqGame()
-    {
-        return File.ReadAllText(MyFile)
-            .Split("\n")
-            .Sum(round =>
-                GetRoundScore(round.Split(" ")
-                    .Select(GetElvesPlay).ToArray()));
     }
 }

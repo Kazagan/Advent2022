@@ -4,9 +4,9 @@ using BenchmarkDotNet.Order;
 
 namespace AdventOfCode2022.Days;
 
-[MemoryDiagnoser()]
+[MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-[RankColumn()]
+[RankColumn]
 public class Day01
 {
     private const string MyFile = "./TextFiles/Day01/Input.txt";
