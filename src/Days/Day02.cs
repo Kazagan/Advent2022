@@ -1,4 +1,3 @@
-using System.IO;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 
@@ -29,7 +28,7 @@ public class Day02
         while (reader.ReadLine() is { } line)
         {
             var opponent = GetElvesPlay(line[0]);
-            var mine = GetElvesPlay(line[2]);
+            var mine = GetMyPlay(opponent, line[2]);
             currentScore += (int)mine + 1 + Rules[(int)opponent, (int)mine];
         }
         return currentScore;
@@ -39,7 +38,8 @@ public class Day02
     public int LinqGame()
     {
         return File.ReadLines(MyFile)
-            .Sum(x => (int)GetElvesPlay(x[2]) + 1 + Rules[(int)GetElvesPlay(x[0]), (int)GetElvesPlay(x[2])]);
+            .Sum(x => (int)GetMyPlay(GetElvesPlay(x[0]), x[2]) + 1 +
+                      Rules[(int)GetElvesPlay(x[0]), (int)GetMyPlay(GetElvesPlay(x[0]), x[2])]);
     }
 
     private static Play GetElvesPlay(char play)
@@ -51,5 +51,24 @@ public class Day02
             'C' or 'Z' => Play.Scissors,
             _ => throw new Exception("Invalid Play")
         };
+    }
+
+    private static Play GetMyPlay(Play opponentPlay, char strategy)
+    {
+        var goal = strategy switch
+        {
+            'X' => 0,
+            'Y' => 3,
+            'Z' => 6,
+            _ => throw new Exception("invalid strategy")
+        };
+        int i;
+        for (i = 0; i < 3; i++)
+        {
+            if (Rules[(int)opponentPlay, i] == goal)
+                break;
+        }
+
+        return (Play)i;
     }
 }
