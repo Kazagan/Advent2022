@@ -29,8 +29,7 @@ public static class Day02
         while (reader.ReadLine() is { } line)
         {
             var plays = line.Split(" ").Select(GetElvesPlay).ToArray();
-            var currentGame = (int)plays[1] + 1 + WinOrLose(plays);
-            currentScore += currentGame;
+            currentScore = (int)plays[1] + 1 + WinOrLose(plays); 
         }
         return currentScore;
     }
