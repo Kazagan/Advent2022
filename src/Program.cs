@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using AdventOfCode2022.Days;
-using BenchmarkDotNet.Reports;
+﻿using AdventOfCode2022.Days;
 using BenchmarkDotNet.Running;
 
 namespace AdventOfCode2022;
@@ -9,9 +7,9 @@ public static class Program
 {
     public static void Main()
     {
-        // var day2 = new Day02();
-        // Console.WriteLine(day2.Game());
-        // Console.WriteLine(day2.LinqGame());
-        BenchmarkRunner.Run<Day02>();
+        // var day03 = new Day03();
+        // Console.WriteLine(day03.Solution());
+        // Console.WriteLine(day03.LingSolution());
+        BenchmarkRunner.Run<Day03>();
     }
 }
