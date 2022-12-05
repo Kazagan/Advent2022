@@ -11,10 +11,11 @@ public class Day03
     private const string MyFile = "./TextFiles/Day03/Input.txt";
 
     [Benchmark]
-    public int LingSolution()
+    public int LinqSolution()
     {
-        return File.ReadAllLines(MyFile)
-            .Select(line => line.Take(line.Length / 2).Intersect(line.TakeLast(line.Length / 2)).First())
+        return File.ReadLines(MyFile)
+            .Chunk(3)
+            .Select(x => x[0].Intersect(x[1].Intersect(x[2])).First()).ToList()
             .Sum(x => x < 91 ? x - 38 : x - 96);
     }
 
@@ -25,18 +26,27 @@ public class Day03
         var prioritySum = 0;
         while (reader.ReadLine() is { } line)
         {
-            var middle = line.Length / 2;
+            var line2 = reader.ReadLine();
+            var line3 = reader.ReadLine();
             var found = false;
-            for (var i = 0; i < middle; i++)
+            for (var i = 0; i < line.Length; i++)
             {
-                for (var j = middle; j < line.Length; j++)
+                for (var j = 0; j < line2?.Length; j++)
                 {
-                    if (line[i] != line[j]) continue;
-                    prioritySum += line[i] < 91 ? line[i] - 38 : line[i] - 96;
-                    found = true;
-                    break;
-                }
+                    if(line[i] != line2[j])
+                        continue;
+                    for (var k = 0; k < line3?.Length; k++)
+                    {
+                        if(line[i] != line3[k])
+                            continue;
+                        found = true;
+                        prioritySum += line[i] < 91 ? line[i] - 38 : line[i] - 96;
+                        break;
+                    }
 
+                    if (found)
+                        break;
+                }
                 if (found)
                     break;
             }
