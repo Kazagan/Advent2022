@@ -1,3 +1,5 @@
+using BenchmarkDotNet.Attributes;
+
 namespace AdventOfCode2022.Extensions;
 
 public static class EnumerableExtensions
@@ -17,5 +19,4 @@ public static class EnumerableExtensions
             chunk.Add(line);
         }
     }
-
 }
