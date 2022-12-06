@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using AdventOfCode2022.Extensions;
 
 namespace AdventOfCode2022.Days;
 
@@ -17,16 +18,16 @@ public class Day05
         }
 
         var stacks = BuildStack(start);
-        var moves = lines.Skip(i).Select(x => Regex.Matches(x, "[0-9]+").Select(y => int.Parse(y.Value)).ToArray());
+        var moves = lines
+            .Skip(i)
+            .Select(x => Regex.Matches(x, "[0-9]+")
+                .Select(y => int.Parse(y.Value)).ToArray());
 
         foreach (var move in moves)
         {
             Console.WriteLine($"move {move[0]} from {move[1]} to {move[2]}");
-            for (var j = 0; j < move[0]; j++)
-            {
-                var item = stacks[move[1] - 1].Pop();
-                stacks[move[2] - 1].Push(item);
-            }
+            var items = stacks[move[1] - 1].PopRange(move[0]);
+            stacks[move[2] - 1].PushRange(items);
         }
 
         return new string(stacks.Select(x => x.Pop()).ToArray());
