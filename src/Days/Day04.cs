@@ -21,6 +21,15 @@ public class Day04
 
         return count;
     }
+    
+    public int LinqSolution()
+    {
+        var x = File.ReadLines(MyFile)
+            .Select(x => x.Split(","))
+            .Select(x => x.Select(y => y.Split("-").Select(int.Parse)));
+            // .Sum(x => ContainsAtAll(x));
+        return 0;
+    }
 
     private bool FullyContains(IEnumerable<IEnumerable<int>> blocks)
     {
