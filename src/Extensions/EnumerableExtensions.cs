@@ -29,7 +29,7 @@ public static class EnumerableExtensions
                 foreach (var t in Flatten((IEnumerable<T>)obj))
                     yield return t;
             
-            yield return (T)obj;
+            yield return obj;
         }
     }
     
@@ -38,7 +38,7 @@ public static class EnumerableExtensions
         foreach (var obj in collection)
         {
             IEnumerable<T> x;
-            if ((x = func(obj)) is not null  and not T)
+            if ((x = func(obj)) is not null and not T)
                 foreach (var t in x.Flatten(func))
                     yield return t;
             
