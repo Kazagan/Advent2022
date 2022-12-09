@@ -6,12 +6,11 @@ namespace AdventOfCode2022.Days;
 public class Day07
 {
     private const string ReadFile = "./TextFiles/Day07/Input.Txt";
-    // private static readonly MyFile Root = new MyFile("/", true);
     private MyFile _context = new MyFile("/", true);
 
     public int Solution1()
     {
-        MyFile root = new MyFile("/", true);
+        var root = new MyFile("/", true);
         _context = root;
         using var reader = new StreamReader(ReadFile);
         ParseFile(reader);
@@ -21,7 +20,7 @@ public class Day07
 
     public int Solution2()
     {
-        MyFile root = new MyFile("/", true);
+        var root = new MyFile("/", true);
         _context = root;
         using var reader = new StreamReader(ReadFile);
         ParseFile(reader);
