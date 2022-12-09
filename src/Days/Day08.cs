@@ -23,18 +23,17 @@ public class Day08
     public int Solution2()
     {
         var grid = new Grid(File.ReadAllLines(MyFile));
-        var visible = (grid.Columns * 2) + (grid.Rows - 2) * 2;
-        for (var i = 0; i < grid.Columns; i++)
+        var max = 0;
+        for (var i = 1; i < grid.Columns - 1; i++)
         {
-            for (var j = 0; j < grid.Rows; j++)
+            for (var j = 1; j < grid.Rows - 1; j++)
             {
-                if (IsVisibleVertical(grid, (i, j)) || IsVisibleHorizontal(grid, (i, j)))
-                    visible++;
+                var visible = VisibleVertical(grid, (i, j)) * VisibleHorizontal(grid, (i, j));
+                max = max < visible ? visible : max;
             }
         }
         
-        return visible;
-        return 0;
+        return max;
     }
 
     private static bool IsVisibleHorizontal(Grid grid, (int x, int y) cord)
@@ -84,13 +83,56 @@ public class Day08
 
         return isVisible;
     }
+
+    private static int VisibleHorizontal(Grid grid, (int x, int y) cord)
+    {
+        var tree = grid.Forest[cord.x][cord.y];
+        var visibleLeft = 0;
+        for(var i = cord.y - 1; i >= 0; i--)
+        {
+            visibleLeft++;
+            if (grid.Forest[cord.x][i] >= tree)
+                break;
+        }
+        var visibleRight = 0;
+        for(var i = cord.y+1; i < grid.Columns; i++)
+        {
+            visibleRight++;
+            if (grid.Forest[cord.x][i] >= tree)
+                break;
+        }
+
+        return visibleLeft * visibleRight;
+    }
+    
+    private static int VisibleVertical(Grid grid, (int x, int y) cord)
+    {
+        var tree = grid.Forest[cord.x][cord.y];
+        var visibleUp = 0;
+        for(var i = cord.x - 1; i >= 0; i--)
+        {
+            visibleUp++;
+            if (grid.Forest[i][cord.y] >= tree)
+                break;
+        }
+        var visibleDown = 0;
+        for(var i = cord.x+1; i < grid.Rows; i++)
+        {
+            visibleDown++;
+            if (grid.Forest[i][cord.y] >= tree)
+                break;
+        }
+        
+        
+        return visibleUp * visibleDown;
+    }
 }
 
 internal struct Grid
 {
-    public string[] Forest { get; init; }
-    public int Columns { get; private set; }
-    public int Rows { get; private set; }
+    public string[] Forest { get; }
+    public int Columns { get; }
+    public int Rows { get; }
         
     public Grid(string[] forest) 
     {

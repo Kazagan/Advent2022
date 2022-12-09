@@ -11,9 +11,9 @@ public static class Program
         var x = day.Solution1();
         // x.Should().Be(1642503);
         Console.WriteLine(x);
-        // var y = day.Solution2();
+        var y = day.Solution2();
         // y.Should().Be(3476);
-        // Console.WriteLine(y);
+        Console.WriteLine(y);
         // BenchmarkRunner.Run<Day06>();
     }
 }
