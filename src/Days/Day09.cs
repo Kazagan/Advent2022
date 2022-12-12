@@ -8,7 +8,17 @@ public class Day09
 
     public int Solution1()
     {
-        var rope = new Rope(2);
+        return Solve(2);
+    }
+    
+    public int Solution2()
+    {
+        return Solve(10);
+    }
+
+    private int Solve(int knots)
+    {
+        var rope = new Rope(knots);
         var visited = new HashSet<(int, int)>();
         using var reader = new StreamReader(MyFile);
         while (reader.ReadLine() is { } line)
@@ -16,10 +26,10 @@ public class Day09
             var lineSplit = line.Split(" ");
             var distance = int.Parse(lineSplit[1]);
             var direction = GetDirection(lineSplit[0]);
-            for (int i = 0; i < distance; i++)
+            for (var i = 0; i < distance; i++)
             {
                 rope.MoveHead(direction);
-                visited.Add(rope.Knots[1]);
+                visited.Add(rope.Knots[knots-1]);
             }
         }
         
