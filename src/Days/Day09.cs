@@ -1,5 +1,3 @@
-using System.Runtime.Intrinsics.X86;
-
 namespace AdventOfCode2022.Days;
 
 public class Day09
@@ -16,7 +14,7 @@ public class Day09
         return Solve(10);
     }
 
-    private int Solve(int knots)
+    private static int Solve(int knots)
     {
         var rope = new Rope(knots);
         var visited = new HashSet<(int, int)>();
@@ -36,7 +34,7 @@ public class Day09
         return visited.Count;
     }
 
-    private (int, int) GetDirection(string direction)
+    private static (int, int) GetDirection(string direction)
     {
         return direction switch
         {
@@ -49,16 +47,16 @@ public class Day09
     }
 }
 
-public struct Rope
+public readonly struct Rope
 {
     public Rope(int knots)
     {
         Knots = new (int, int)[knots];
     }
 
-    public (int X, int Y)[] Knots { get; private set; }
+    public (int X, int Y)[] Knots { get; }
 
-    public (int, int) Distance(int i, int j)
+    private (int, int) Distance(int i, int j)
     {
         var horizontalDistance = Knots[i].X - Knots[j].X;
         var verticalDistance = Knots[i].Y - Knots[j].Y;
