@@ -1,3 +1,5 @@
+using System.Runtime.Intrinsics.X86;
+
 namespace AdventOfCode2022.Days;
 
 public class Day09
@@ -6,7 +8,7 @@ public class Day09
 
     public int Solution1()
     {
-        var rope = new Rope();
+        var rope = new Rope(2);
         var visited = new HashSet<(int, int)>();
         using var reader = new StreamReader(MyFile);
         while (reader.ReadLine() is { } line)
@@ -17,7 +19,7 @@ public class Day09
             for (int i = 0; i < distance; i++)
             {
                 rope.MoveHead(direction);
-                visited.Add(rope.Tail);
+                visited.Add(rope.Knots[1]);
             }
         }
         
@@ -39,35 +41,38 @@ public class Day09
 
 public struct Rope
 {
-    public Rope()
+    public Rope(int knots)
     {
+        Knots = new (int, int)[knots];
     }
 
-    public (int X, int Y) Head { get; private set; } = (0, 0);
-    public (int X, int Y) Tail { get; private set; } = (0, 0);
+    public (int X, int Y)[] Knots { get; private set; }
 
-    public (int, int) Distance()
+    public (int, int) Distance(int i, int j)
     {
-        var horizontalDistance = Head.X - Tail.X;
-        var verticalDistance = Head.Y - Tail.Y;
+        var horizontalDistance = Knots[i].X - Knots[j].X;
+        var verticalDistance = Knots[i].Y - Knots[j].Y;
         return (horizontalDistance, verticalDistance);
     }
 
     public void MoveHead((int X, int Y) direction)
     {
-        Head = (Head.X + direction.X, Head.Y + direction.Y);
-        MoveTail();
+        Knots[0] = (Knots[0].X + direction.X, Knots[0].Y + direction.Y);
+        for (var i = 1; i < Knots.Length; i++)
+        {
+            MoveKnot(i);
+        }
     }
 
-    private void MoveTail()
+    private void MoveKnot(int i)
     {
-        var movement = GetTailMovement();
-        Tail = (Tail.X + movement.Item1, Tail.Y + movement.Item2);
+        var movement = GetTailMovement(i);
+        Knots[i] = (Knots[i].X + movement.Item1, Knots[i].Y + movement.Item2);
     }
 
-    private (int, int) GetTailMovement()
+    private (int, int) GetTailMovement(int i)
     {
-        var distance = Distance();
+        var distance = Distance(i-1, i);
         var a = distance.Item1 * distance.Item1;
         var b = distance.Item2 * distance.Item2;
         var dist = Math.Sqrt(a + b);
