@@ -1,5 +1,4 @@
 using System.Collections;
-using BenchmarkDotNet.Attributes;
 
 namespace AdventOfCode2022.Extensions;
 

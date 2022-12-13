@@ -8,15 +8,14 @@ public class Day10
     public int Solution()
     {
         using var reader = new StreamReader(MyFile);
-        int tick = 0, x = 1, result = 0;
+        int tick = 0, x = 1, result = 0, i = 0;
         var process = new Queue<string>();
         var interestingCycles = new[] { 20, 60, 100, 140, 180, 220 };
         var screen = new char[6, 40];
-        int i = 0;
         while (true)
         {
-            var screenPosition = tick - (40 * (i));
-            screen[i, screenPosition] = screenPosition >= x - 1 && screenPosition <= x + 1 ? '#' : '.';
+            var screenPosition = tick - 40 * i;
+            screen[i, screenPosition] = screenPosition >= x - 1 && screenPosition <= x + 1 ? '#' : ' ';
 
             if (interestingCycles.Contains(tick))
                 result += (tick * x);
@@ -37,13 +36,12 @@ public class Day10
 
     private static void PrintScreen(char[,] screen)
     {
-        for (int j = 0; j < screen.GetLength(0); j++)
+        for (int i = 0; i < screen.GetLength(0); i++)
         {
-            for (int k = 0; k < screen.GetLength(1); k++)
+            for (int j = 0; j < screen.GetLength(1); j++)
             {
-                Console.Write(screen[j, k]);
+                Console.Write(screen[i, j]);
             }
-
             Console.WriteLine();
         }
     }
