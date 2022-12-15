@@ -26,7 +26,7 @@ public class Day01
     {
         var highThree = new[] { 0, 0, 0 };
         var current = 0;
-        var lines = System.IO.File.ReadAllLines(MyFile);
+        var lines = File.ReadAllLines(MyFile);
         for (int i = 0; i < lines.Length; i++)
         {
             if (!string.IsNullOrEmpty(lines[i]))
