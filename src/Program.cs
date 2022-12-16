@@ -6,10 +6,10 @@ public static class Program
 {
     public static void Main()
     {
-        var day = new Day13();
+        var day = new Day14();
         var x = day.Solution();
-        var y = day.Solution2();
+        // var y = day.Solution2();
         Console.WriteLine(x);
-        Console.WriteLine(y);
+        // Console.WriteLine(y);
     }
 }
