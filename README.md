@@ -16,4 +16,11 @@ life of me figure out what I was doing wrong. Until I finally spotted something 
 theme of these challenges so far for me. I had not considered 2 digit numbers in my solution. And reading 
 the file character by character meant I was adding 1 and 0 from 10 separately.
 
-Day 15: Brute force solution was easy enough to find, but with the large numbers involved it would have likely have taken at least an 
+Day 15: Brute force solution was easy enough to find, but with the large numbers involved it would have likely have taken at least an
+hour to solve, so I spent some time trying to consider ways to find gaps in the signal another way. To keep it fast, I was not checking all spots, 
+but only those less than the current location + manhattan distance in each cardinal direction. So I wanted a way to skip checking areas directly above and below
+sensors, as well as some diagnal spots.
+
+Day 16: Needed some help getting started here, I had planned on reusing the Dijkstra method to find the distance between each location to any other location, filtering
+for valves with value, then brute forcing a solution. I got stuck after getting the Dijkstra method ran, on how to check each possible path for the best choice, so referenced other peoples solutions for guidance.
+
