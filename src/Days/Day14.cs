@@ -1,8 +1,10 @@
+using AdventOfCode2022.Helpers;
+
 namespace AdventOfCode2022.Days;
 
 public class Day14
 {
-    private const string MyFile = "./TextFiles/Day14/Input.txt";
+    private const string MyFile = "./TextFiles/Day14/Example.txt";
 
     public int Solution()
     {
@@ -11,22 +13,21 @@ public class Day14
         while (reader.ReadLine() is { } line)
             rocks.Add(GetSlices(line));
         
-        var right = rocks.SelectMany(x => x.Select(y => y.X)).Max() + 5;
-        var bottom = rocks.SelectMany(x => x.Select(y => y.Y)).Max() + 2;
-        var left = rocks.SelectMany(x => x.Select(y => y.X)).Min() - 2;
+        var right = rocks.SelectMany(x => x.Select(y => y.X)).Max() * 2;
+        var bottom = rocks.SelectMany(x => x.Select(y => y.Y)).Max() + 3;
         var grid = InitializeGrid(bottom, right);
         grid[0, 500] = '+';
         PlaceObstructions(rocks, grid);
-        return GenerateSand(grid, left);
+        return GenerateSand(grid, 0);
     }
 
     private int GenerateSand(char[,] grid, int left)
     {
         int count = 0;
+        PrintGrid(grid, left, (0, grid.GetLength(0)));
         while(SandFlow(grid, left))
         {
             count++;
-            PrintGrid(grid, left);
         }
         return count;
     }
@@ -37,6 +38,8 @@ public class Day14
         sandLocation = Drop(grid, sandLocation, left);
         if (sandLocation.Equals((0, 0)))
             return false;
+        if (sandLocation.Equals((500, 0)))
+            return false;
         grid[sandLocation.Y, sandLocation.X] = '0';
         return true;
     }
@@ -45,21 +48,23 @@ public class Day14
     {
         while (true)
         {
-            grid[current.Y, current.X] = '.';
+            var prior = current;
+            grid[current.Y, current.X] = ' ';
             if (current.Y+1 == grid.GetLength(0))
                 return new Coordinates(0,0);
             
-            if (grid[current.Y + 1, current.X] == '.')
+            
+            if (grid[current.Y + 1, current.X] == ' ')
                 current += (0, 1);
-            else if (grid[current.Y + 1, current.X - 1] == '.')
+            else if (grid[current.Y + 1, current.X - 1] == ' ')
                 current += (-1, 1);
-            else if (grid[current.Y + 1, current.X + 1] == '.')
+            else if (grid[current.Y + 1, current.X + 1] == ' ')
                 current += (1, 1);
             else
                 break;
             
             grid[current.Y, current.X] = '0';
-            PrintGrid(grid, left);
+            UpdateConsole(grid, current, prior, left);
         }
 
         return current;
@@ -71,6 +76,9 @@ public class Day14
         {
             PlaceRocks(rock, grid);
         }
+
+        for (int i = 0; i < grid.GetLength(1); i++)
+            grid[grid.GetLength(0) - 1, i] = '#';
     }
 
     private static void PlaceRocks(IReadOnlyList<Coordinates> rock, char[,] grid)
@@ -113,25 +121,44 @@ public class Day14
         {
             for (var j = 0; j < xMax; j++)
             {
-                x[i, j] = '.';
+                x[i, j] = ' ';
             }
         }
 
         return x;
     }
 
-    private static void PrintGrid(char[,] grid, int min)
+    private static void PrintGrid(char[,] grid, int left, (int x, int y) x)
     {
-        Thread.Sleep(50);
-        Console.Clear();
-        for (var i = 0; i < grid.GetLength(0); i++)
+        var top = x.x < 0 ? 0 : x.x;
+        var bottom = x.y > grid.GetLength(0) ? grid.GetLength(0) : x.y;
+        var length = grid.GetLength(1);
+        grid[0, 500] = '+';
+        Console.SetCursorPosition(0,3);
+        for (var i = top; i < bottom; i++)
         {
-            for (var j = min; j < grid.GetLength(1); j++)
+            for (var j = left; j < length; j++)
             {
                 Console.Write(grid[i,j]);
             }
+        
             Console.WriteLine();
         }
+    }
+    
+    private static void UpdateConsole(char[,] grid,Coordinates current, Coordinates prior, int left)
+    {
+        if (prior.X == 500 && prior.Y == 0) return;
+        Thread.Sleep(100);
+        if (prior.X < left || prior.X > grid.GetLength(1))
+            return;
+        Console.SetCursorPosition(( prior.X - left), (prior.Y) + 3);
+        Console.Write(grid[prior.Y, prior.X]);
+
+        if (current.X < left || current.X > grid.GetLength(1))
+            return;
+        Console.SetCursorPosition(( current.X - left), (current.Y) + 3);
+        Console.Write(grid[current.Y, current.X]);
     }
 
     private List<Coordinates> GetSlices(string line)
@@ -144,37 +171,3 @@ public class Day14
     }
 }
 
-internal struct Coordinates
-{
-    public Coordinates(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
-    public int X { get; set; }
-    public int Y { get; set;  }
-
-    public static Coordinates operator +(Coordinates a) => a;
-    public static Coordinates operator -(Coordinates a) => new (-a.X, -a.Y);
-    public static Coordinates operator +(Coordinates a, Coordinates b) => new (a.X + b.X, a.Y + b.Y);
-    public static Coordinates operator +(Coordinates a, (int X, int Y) t) => new(a.X + t.X, a.Y + t.Y);
-    public static Coordinates operator -(Coordinates a, Coordinates b) => a + (-b);
-    public static bool operator ==(Coordinates a, Coordinates b) => a.X == b.X && a.Y == b.Y;
-    public static bool operator !=(Coordinates a, Coordinates b) => !(a==b);
-    public bool Equals(Coordinates other)
-    {
-        return X == other.X && Y == other.Y;
-    }
-    public bool Equals((int X, int Y) t)
-    {
-        return X == t.X && Y == t.Y;
-    }
-    public override bool Equals(object? obj)
-    {
-        return obj is Coordinates other && Equals(other);
-    }
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(X, Y);
-    }
-}

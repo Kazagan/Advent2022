@@ -19,7 +19,9 @@ public class Day06
     {
         for (var i = 0; i < input.Length - (marker + 1); i++)
         {
-            var values = input.Take(new Range(i, i + marker)).Distinct();
+            // var values = input.Take(new Range(i, i + marker)).Distinct();
+            var range = new System.Range(i, i + marker);
+            var values = input.Take(range).Distinct();
             if (values.Count() != marker) continue;
             return i + marker;
         }

@@ -33,7 +33,6 @@ public class Day12
             foreach (var neighbor in smallest.Neighbors)
             {
                 var currentDistance = smallest.Distance + 1; // Every neighbor is 1 away
-                if (currentDistance >= neighbor.Distance) continue;
                 neighbor.Distance = currentDistance;
                 toVisit.Add(neighbor);
             }

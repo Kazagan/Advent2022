@@ -15,3 +15,5 @@ Day13: Extreme frustration as my solution was very close for the longest time, a
 life of me figure out what I was doing wrong. Until I finally spotted something that has been a running 
 theme of these challenges so far for me. I had not considered 2 digit numbers in my solution. And reading 
 the file character by character meant I was adding 1 and 0 from 10 separately.
+
+Day 15: Brute force solution was easy enough to find, but with the large numbers involved it would have likely have taken at least an 
