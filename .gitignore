@@ -1,6 +1,6 @@
 bin/
 obj/
-src/TextFiles/
+TextFiles/
 .idea/*
 BenchmarkDotNet.Artifacts/
 aoc*

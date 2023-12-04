@@ -4,14 +4,10 @@ using BenchmarkDotNet.Order;
 
 namespace AdventOfCode2022.Days;
 
-[MemoryDiagnoser]
-[Orderer(SummaryOrderPolicy.FastestToSlowest)]
-[RankColumn]
 public class Day01
 {
     private const string MyFile = "./TextFiles/Day01/Input.txt";
 
-    [Benchmark]
     public int LinqSolution()
     {
         return File.ReadAllText(MyFile).Split("\n\n")
@@ -21,7 +17,6 @@ public class Day01
             .Sum();
     }
     
-    [Benchmark]
     public int ReadLines()
     {
         var highThree = new[] { 0, 0, 0 };
@@ -42,7 +37,6 @@ public class Day01
         return highThree.Sum();
     }
     
-    [Benchmark]
     public int Stream()
     {
         using var stream = new StreamReader(MyFile);
@@ -77,7 +71,6 @@ public class Day01
                 (highThree[index], current) = (current, highThree[index]);
     }
     
-    [Benchmark]
     //The following isn't mine, and was found online, want to bench mark it.
     public int OnlineAnswer()
     {
