@@ -21,24 +21,20 @@ public static class Day01
         for (var i = 0; i < input.Length; i++)
         {
             if (char.IsDigit(input[i]))
-            {
                 return input[i].ToString();
-            }
-            
+
             var current = input[i..];
             var keys = Numbers.Keys.Where(x => x.Length <= current.Length).ToList();
-
             
-            var number = keys.FirstOrDefault(n => n.Equals(current[..n.Length]));
+            var number = keys.SingleOrDefault(n => n.Equals(current[..n.Length]));
+            
             if (number is null)
-            {
                 continue;
-            }
 
             return Numbers[number];
         }
 
-        return "";
+        throw new Exception($"string {input} contained no numbers represented as text or digit");
     }
     
     private static string GetLastNumber(string input)
@@ -49,25 +45,16 @@ public static class Day01
             var keys = Numbers.Keys.Where(x => x.Length <= current.Length).ToList();
 
             if (char.IsDigit(current.First()))
-            {
                 return current.First().ToString();
-            }
-
-            if (!keys.Any())
-            {
-                continue;
-            }
-            var number = keys.FirstOrDefault(n => n.Equals(current[..n.Length]));
+            
+            var number = keys.SingleOrDefault(n => n.Equals(current[..n.Length]));
+            
             if (number is null)
-            {
                 continue;
-            }
 
             return Numbers[number];
         }
 
-        return "";
+        throw new Exception($"string {input} contained no numbers represented as text or digit");
     }
-
-    private static string AsDigit(this string input) => Numbers.TryGetValue(input, out var result) ? result : input;
 }
