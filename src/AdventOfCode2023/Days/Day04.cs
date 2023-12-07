@@ -52,5 +52,5 @@ public class Ticket
 {
     public int Count { get; set; }
     public IEnumerable<string>[] Card { get; set; } = null!;
-    public int? MatchCount { get; set; } = null;
+    public int? MatchCount { get; set; }
 }

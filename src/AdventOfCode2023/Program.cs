@@ -8,19 +8,21 @@ public static class Program
 {
     public static void Main()
     {
-        const string day = "04";
+        const string day = "06";
         const string directory = $"TextFiles/Day{day}/";
         var files = Directory.GetFiles(directory);
 
         WritePart("Part 1");
-        var part1 = files.ToDictionary(file => file.Split("/").Last(), Day04.Part1);
+        var part1 = files.ToDictionary(file => file.Split("/").Last(), Day06.Part1);
         foreach (var result in part1)
         {
             Console.WriteLine($"{result.Key}: {result.Value}");
         }
         
         WritePart("Part 2");
-        var part2 = files.ToDictionary(file => file.Split("/").Last(), Day04.Part2);
+        var part2 = files
+            // .Where(x => !x.Contains("Input"))
+            .ToDictionary(file => file.Split("/").Last(), Day06.Part2);
         foreach (var result in part2)
         {
             Console.WriteLine($"{result.Key}: {result.Value}");
