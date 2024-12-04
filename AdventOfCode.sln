@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2022", "src/AdventOfCode2022/AdventOfCode2022.csproj", "{CF77846B-2247-4E32-BFDD-FEAAF5699BA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2022", "src\AdventOfCode2022\AdventOfCode2022.csproj", "{CF77846B-2247-4E32-BFDD-FEAAF5699BA7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7E22993D-3FF2-4B1A-A4D4-766987B7D9E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2023", "src/AdventOfCode2023\AdventOfCode2023.csproj", "{6D455F44-5F2A-40B0-A3FE-B4356F6B6BC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2023", "src\AdventOfCode2023\AdventOfCode2023.csproj", "{6D455F44-5F2A-40B0-A3FE-B4356F6B6BC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2024", "src\AdventOfCode2024\AdventOfCode2024.csproj", "{A9A8E7E7-46A0-4C95-9574-809563D6C41F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +28,14 @@ Global
 		{6D455F44-5F2A-40B0-A3FE-B4356F6B6BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D455F44-5F2A-40B0-A3FE-B4356F6B6BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D455F44-5F2A-40B0-A3FE-B4356F6B6BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A8E7E7-46A0-4C95-9574-809563D6C41F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A8E7E7-46A0-4C95-9574-809563D6C41F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A8E7E7-46A0-4C95-9574-809563D6C41F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A8E7E7-46A0-4C95-9574-809563D6C41F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CF77846B-2247-4E32-BFDD-FEAAF5699BA7} = {7E22993D-3FF2-4B1A-A4D4-766987B7D9E8}
 		{6D455F44-5F2A-40B0-A3FE-B4356F6B6BC4} = {7E22993D-3FF2-4B1A-A4D4-766987B7D9E8}
+		{A9A8E7E7-46A0-4C95-9574-809563D6C41F} = {7E22993D-3FF2-4B1A-A4D4-766987B7D9E8}
 	EndGlobalSection
 EndGlobal

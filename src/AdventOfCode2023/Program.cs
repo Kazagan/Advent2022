@@ -6,12 +6,12 @@ public static class Program
 {
     public static void Main()
     {
-        const string day = "07";
+        const string day = "08";
         const string directory = $"TextFiles/Day{day}/";
         var files = Directory.GetFiles(directory);
 
         WritePart("Part 1");
-        var part1 = files.ToDictionary(file => file.Split("/").Last(), Day07.Part1);
+        var part1 = files.ToDictionary(file => file.Split("/").Last(), Day08.Part1);
         foreach (var result in part1)
         {
             Console.WriteLine($"{result.Key}: {result.Value}");
@@ -19,8 +19,8 @@ public static class Program
         
         WritePart("Part 2");
         var part2 = files
-            // .Where(x => !x.Contains("Input"))
-            .ToDictionary(file => file.Split("/").Last(), Day07.Part2);
+            // .Where(x => x.Contains("Input"))
+            .ToDictionary(file => file.Split("/").Last(), Day08.Part2);
         foreach (var result in part2)
         {
             Console.WriteLine($"{result.Key}: {result.Value}");

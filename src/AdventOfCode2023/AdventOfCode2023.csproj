@@ -48,12 +48,20 @@
       <None Update="TextFiles\Day06\Input">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="TextFiles\Day07\Example">
+      <None Update="TextFiles\Day08\Example">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="TextFiles\Day07\Input">
+      <None Update="TextFiles\Day08\Input">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="TextFiles\Day08\Example2">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="TextFiles\Day08\ExamplePart2">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+
+
     </ItemGroup>
 
 
