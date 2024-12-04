@@ -16,7 +16,7 @@ public class Day02 : AdventDay
     public int Second(string filePath)
     {
         var lines = File.ReadLines(filePath).Select(x => x.Split(' ').Select(int.Parse).ToArray());
-        return lines.Select(IsSafeWithDamper).Count(result => result.All(x => x));
+        return lines.Select(IsSafeWithDamper).Count(result => result);
     }
 
     private static IEnumerable<bool> IsSafe(int[] line)
@@ -36,19 +36,15 @@ public class Day02 : AdventDay
     
     private static bool IsSafeWithDamper(int[] line)
     {
-        var result = new List<bool>();
-        var toCheck = (new List<int>(line)).ToArray();
-        var state = line[0] - line[1] < 0;
-
-        for (int i = 0; i < line.Length - 1; i++)
+        if (IsSafe(line).All(x => x))
+            return true;
+        for (var i = 0; i < line.Length; i++)
         {
-            var difference = line[i] - line[i + 1];
-            if (Math.Abs(difference) <= 3 && state == difference < 0 && difference != 0)
-            {
-                yield return true;
-                continue;
-            }
-            yield return false;
+            var toCheck = new List<int>(line);
+            toCheck.RemoveAt(i);
+            if (IsSafe(toCheck.ToArray()).All(x => x)) return true;
         }
+
+        return false;
     }
 }
