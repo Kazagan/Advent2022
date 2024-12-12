@@ -7,13 +7,13 @@ public class Day02 : AdventDay
 {
     public int Day => 2;
 
-    public int First(string filePath)
+    public long First(string filePath)
     {
         var lines = File.ReadLines(filePath).Select(x => x.Split(' ').Select(int.Parse).ToArray());
         return lines.Select(IsSafe).Count(result => result.All(x => x));
     }
     
-    public int Second(string filePath)
+    public long Second(string filePath)
     {
         var lines = File.ReadLines(filePath).Select(x => x.Split(' ').Select(int.Parse).ToArray());
         return lines.Select(IsSafeWithDamper).Count(result => result);

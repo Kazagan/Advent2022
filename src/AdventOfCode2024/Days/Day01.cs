@@ -6,7 +6,7 @@ public class Day01 : AdventDay
 {
     public int Day => 1;
 
-    public int First(string filePath)
+    public long First(string filePath)
     {
         var left = new List<int>();
         var right = new List<int>();
@@ -28,7 +28,7 @@ public class Day01 : AdventDay
         return zip.Sum();
     }
     
-    public int Second(string filePath)
+    public long Second(string filePath)
     {
         var left = new List<int>();
         var right = new List<int>();
